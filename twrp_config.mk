@@ -30,6 +30,11 @@ TW_INCLUDE_FASTBOOTD    := true
 TW_LOAD_VENDOR_MODULES := "haptic.ko hapticdrv.ko"
 TW_LOAD_VENDOR_MODULES_EXCLUDE_GKI := true
 
+# Haptics
+TW_SUPPORT_INPUT_AIDL_HAPTICS := true
+TW_SUPPORT_INPUT_AIDL_HAPTICS_FQNAME := "IVibrator/default"
+TW_SUPPORT_INPUT_AIDL_HAPTICS_FIX_OFF := true
+
 # Change clock position so camera wont close up the clock
 TW_CUSTOM_CLOCK_POS := "590"
 

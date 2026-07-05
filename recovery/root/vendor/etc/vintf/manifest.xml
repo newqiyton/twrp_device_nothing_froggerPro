@@ -1,20 +1,13 @@
 <!--
     Input:
-        system/libhidl/vintfdata/system_ext_manifest.default.xml
-        system/hwservicemanager/hwservicemanager.xml
+        device/qcom/sun/manifest_sun.xml
 -->
-<manifest version="9.0" type="framework">
-    <hal format="hidl" max-level="8">
-        <name>android.hidl.manager</name>
-        <transport>hwbinder</transport>
-        <fqname>@1.2::IServiceManager/default</fqname>
+<manifest version="4.0" type="device" target-level="8">
+    <hal format="aidl">
+        <name>android.hardware.gatekeeper</name>
+        <fqname>IGatekeeper/default</fqname>
     </hal>
-    <hal format="hidl" max-level="8">
-        <name>android.hidl.token</name>
-        <transport>hwbinder</transport>
-        <fqname>@1.0::ITokenManager/default</fqname>
-    </hal>
-    <vendor-ndk>
-        <version>34</version>
-    </vendor-ndk>
+    <sepolicy>
+        <version>34.0</version>
+    </sepolicy>
 </manifest>

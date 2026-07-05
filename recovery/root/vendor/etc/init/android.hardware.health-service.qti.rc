@@ -1,4 +1,4 @@
-'on fs
+on fs
     start vendor.health-default
 
 service vendor.health-default /vendor/bin/hw/android.hardware.health-service.qti
@@ -16,4 +16,3 @@ service vendor.charger /vendor/bin/hw/android.hardware.health-service.qti --char
     group system wakelock input graphics
     capabilities SYS_BOOT WAKE_ALARM BLOCK_SUSPEND
     file /dev/kmsg w
-

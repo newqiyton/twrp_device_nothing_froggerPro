@@ -25,8 +25,9 @@
 # ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #
 #
-# Changes from Qualcomm Innovation Center are provided under the following license:
-# Copyright (c) 2022-2024 Qualcomm Innovation Center, Inc. All rights reserved.
+# Changes from Qualcomm Technologies, Inc. are provided under the following license:
+# Copyright (c) Qualcomm Technologies, Inc. and/or its subsidiaries.
+# SPDX-License-Identifier: BSD-3-Clause-Clear
 #
 # Redistribution and use in source and binary forms, with or without
 # modification, are permitted (subject to the limitations in the
@@ -116,6 +117,9 @@ subsystem mem_buf_vm
 #permissions for UFS RPMB BSG device node
 /dev/0:0:0:49476          0600   system     system
 
+#permissions for eMMC RPMB device node
+/dev/mmcblk0rpmb          0600   system     system
+
 #permissions for GPT listener on LUN4
 /dev/0:0:0:4              0600   system     root
 
@@ -127,7 +131,6 @@ subsystem mem_buf_vm
 /dev/smd3                 0660   bluetooth  bluetooth
 /dev/btpower              0660   bluetooth  system
 /dev/btfmslim             0660   bluetooth  system
-/dev/btfmswr              0660   bluetooth  system
 /dev/bt_cp_ctrl           0660   bluetooth  system
 /dev/btfmcodec_dev        0660   bluetooth  system
 
@@ -188,8 +191,6 @@ subsystem mem_buf_vm
 /dev/mhi_*_pipe_32        0640   radio      radio
 /dev/at_usb0              0640   radio      radio
 /dev/at_mdm0              0640   radio      radio
-/dev/ims_dc_sub1          0640   radio      radio
-/dev/ims_dc_sub2          0640   radio      radio
 /dev/video*               0660   system     camera
 /dev/cvp*                 0660   system     camera
 /dev/media*               0660   system     camera
@@ -401,6 +402,11 @@ subsystem mem_buf_vm
 
 # eSE permissions
 /dev/st54spi_gpio         0660   system     system
+/dev/stsafe320_gpio       0660   system     system
+# ifdef NT_EDIT
+# Nothing add eSE permissions /ARCA-22
+/dev/st54spi              0660   secure_element     secure_element
+# endif NT_EDIT
 
 # UIO devices
 /dev/uio0                 0660   system     system
@@ -442,19 +448,19 @@ subsystem mem_buf_vm
 /dev/block/platform/soc/7c4000.sdhci/by-name/frp        0600   system     system
 /dev/block/platform/soc/4744000.sdhci/by-name/frp       0600   system     system
 /dev/block/platform/soc/4804000.ufshc/by-name/frp       0600   system     system
-/dev/block/platform/soc/1bf8000.pcie/by-name/frp        0600   system     system
-/dev/block/platform/soc/f44000.sdhci/by-name/frp        0600   system     system
+/dev/block/platform/soc/b24000.sdhci/by-name/frp        0600   system     system
 
-#Add for binfo
-/dev/block/platform/soc/1d84000.ufshc/by-name/binfo     0660   system     system
-/dev/block/platform/soc/7c4000.sdhci/by-name/binfo      0660   system     system
+/dev/block/platform/soc/1d84000.ufshc/by-name/binfo   0660    system     system
+/dev/block/platform/soc/7c4000.sdhci/by-name/binfo    0660    system     system
 
 #Add for nt_reserve1
 /dev/block/platform/soc/1d84000.ufshc/by-name/nt_reserve1     0660   system     system
 /dev/block/platform/soc/7c4000.sdhci/by-name/nt_reserve1      0660   system     system
 
+
 # This is temporary while using SD card for initial bring-up
 /dev/block/platform/soc/8804000.sdhci/by-name/frp       0600   system     system
+/dev/block/platform/soc/8844000.sdhci/by-name/frp       0600   system     system
 
 # Kmsg device
 /dev/kmsg                                               0620   root       system
@@ -478,12 +484,6 @@ subsystem mem_buf_vm
 /sys/class/leds/blue     trigger      0640    system    system
 /sys/class/leds/blue     repeat       0640    system    system
 /sys/class/leds/blue     hw_pattern   0640    system    system
-
-#Haptics class devices
-/sys/class/qcom-haptics    visense_enabled     0400    system    system
-/sys/class/qcom-haptics    primitive_duration  0600    system    system
-/sys/class/qcom-haptics    v_gain_error        0640    system    audio
-/sys/class/qcom-haptics    i_gain_error        0640    system    audio
 
 # NPU device
 /dev/msm_npu             0644   system     system
@@ -511,7 +511,9 @@ subsystem mem_buf_vm
 /sys/bus/usb/devices/usb*   authorized                 0660  system  usb
 
 #USB mode setting
+/sys/bus/platform/devices/a400000.ssusb    mode        0660  system  usb
 /sys/bus/platform/devices/a600000.ssusb    mode        0660  system  usb
+/sys/bus/platform/devices/4e00000.ssusb    mode        0660  system  usb
 
 #Memory Offline
 /sys/devices/system/memory/memory* state    0660 system system
@@ -553,6 +555,7 @@ subsystem mem_buf_vm
 */
 
 /sys/devices/platform/soc/ae00000.qcom,mdss_mdp power/control 0664 system graphics
+/sys/devices/platform/soc/9800000.qcom,mdss_mdp power/control 0664 system graphics
 
 #asm330 sensor
 #common sensors files
@@ -624,8 +627,9 @@ subsystem mem_buf_vm
 # Q2SPI UWB device
 /dev/q2spiuwb    0660    uwb    uwb
 
-# RemoteProc state
-/sys/class/remoteproc/remoteproc*   state    0660    root  system
+# SPI UWB device
+/dev/spiuwb    0660    uwb    uwb
 
-# IPA Events
-/dev/ipa_events         0660   radio      radio
+#power_state device node
+/dev/power_state           0660   system      system
+

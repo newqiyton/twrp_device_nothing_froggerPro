@@ -1,8 +1,7 @@
-<!--
-    Input:
-        hardware/qcom/bootctrl/aidl/boot-service.qti.xml
+<!-- Copyright (c) 2023 Qualcomm Innovation Center, Inc. All rights reserved.
+SPDX-License-Identifier: BSD-3-Clause-Clear
 -->
-<manifest version="8.0" type="device">
+<manifest version="1.0" type="device">
     <hal format="aidl">
         <name>android.hardware.boot</name>
         <fqname>IBootControl/default</fqname>

@@ -33,32 +33,38 @@ Manifest        | https://github.com/nebrassy/platform_manifest_twrp_aosp.git
 
 ## Checklist
 
-### Functionality
+### Functionality according to twrp FAQ
 
-- [x] Installing and flashing images
-    - [x] .zip files (experimental)
-    - [ ] .img files (working)
-- [ ] Backup and restore
-    - [ ] To external/removable devices (e.g. OTG device)
-- [x] Built-in features work normally
-    - [x] ADB
-        - [x] Sideload
-    - [ ] FastbootD
-    - [x] Screen and brightnesss
-    - [x] Touchscreen
-    - [ ] MTP
-    - [x] Filesystem/Mounts
-    - [x] Slot switch
-    - [ ] Haptics
-- [ ] Settings persistence
-- [ ] Data decryption
-    - [ ] Without a password
-    - [ ] With a password
+Blocking checks
+- [x] Correct screen/recovery size
+- [x] Working Touch, screen
+- [ ] Backup to internal/microSD
+- [ ] Restore from internal/microSD
+- [x] reboot to system
+- [x] ADB
 
+Medium checks
+- [x] update.zip sideload
+- [x] UI colors (red/blue inversions)
+- [x] Screen goes off and on
+- [x] F2FS/EXT4 Support, exFAT/NTFS where supported
+- [x] all important partitions listed in mount/backup lists
+- [ ] backup/restore to/from external (USB-OTG) storage (not supported by the device)
+- [ ] backup/restore to/from adb (https://gerrit.omnirom.org/#/c/15943/)
+- [ ] decrypt /data
+- [ ] Correct date
 
-### COMPILE BUILD
-
-
-In order to compile:
-
-`lunch twrp_froggerPro-ap2a-eng && m recoveryimage`
+Minor checks
+- [ ] MTP export
+- [x] reboot to bootloader
+- [x] reboot to recovery
+- [x] poweroff
+- [ ] battery level
+- [x] temperature
+- [ ] encrypted backups
+- [ ] input devices via USB (USB-OTG) - keyboard, mouse and disks (not supported by the device)
+- [ ] USB mass storage export
+- [x] set brightness
+- [ ] vibrate
+- [ ] screenshot
+- [ ] partition SD card

@@ -7,3 +7,5 @@ ro.recovery.usb.fastboot.pid=4EE0
 # Keymaster / Keystore
 persist.sys.qseelogd=true
 persist.logd.size=8M
+keymaster_ver=4.1
+ro.hardware.keystore=marlin

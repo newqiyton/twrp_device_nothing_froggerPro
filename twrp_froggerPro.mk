@@ -12,18 +12,13 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit some common Omni stuff.
 $(call inherit-product, vendor/twrp/config/common.mk)
 
-PRODUCT_SHIPPING_API_LEVEL := 34
-
 DEVICE_PATH := device/nothing/froggerPro
 
-# Inherit from FroggerPro device
-$(call inherit-product, $(DEVICE_PATH)/device.mk)
-
-# Include TWRP/FOX props
+# Include TWRP props
 $(call inherit-product, $(DEVICE_PATH)/twrp_config.mk)
 
 PRODUCT_DEVICE := froggerPro
-PRODUCT_NAME := fox_froggerPro
+PRODUCT_NAME := twrp_froggerPro
 PRODUCT_BRAND := Nothing
 PRODUCT_MODEL := A069P
 PRODUCT_MANUFACTURER := nothing
@@ -34,4 +29,6 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     PRIVATE_BUILD_DESC="FroggerPro-user 15 AQ3A.250924.001 2603231635 dev-keys"
 
 BUILD_FINGERPRINT := Nothing/FroggerPro/FroggerPro:15/AQ3A.250924.001/2603231635:user/release-keys
+
+
 

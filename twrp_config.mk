@@ -12,9 +12,6 @@ TW_THEME := portrait_hdpi
 TW_SCREEN_BLANK_ON_BOOT := true
 TW_NO_INPUT_DEVICES := false
 TW_INPUT_BLACKLIST := "null"
-
-TW_MAX_BRIGHTNESS := 5000
-
 TW_DEFAULT_LANGUAGE     := en
 TW_USE_TOOLBOX          := true
 TW_INCLUDE_NTFS_3G      := true
@@ -27,21 +24,20 @@ TW_EXTRA_LANGUAGES      := true
 TW_EXCLUDE_APEX         := true
 TW_INCLUDE_FASTBOOTD    := true
 
-TW_LOAD_VENDOR_MODULES := "haptic.ko hapticdrv.ko"
+TW_LOAD_VENDOR_MODULES := "adsp_loader_dlkm.ko rproc_qcom_common.ko q6_dlkm.ko qcom_q6v5.ko qcom_q6v5_pas.ko qcom_sysmon.ko haptic.ko hapticdrv.ko"
 TW_LOAD_VENDOR_MODULES_EXCLUDE_GKI := true
 
-# Haptics
 TW_SUPPORT_INPUT_AIDL_HAPTICS := true
 TW_SUPPORT_INPUT_AIDL_HAPTICS_FQNAME := "IVibrator/default"
 TW_SUPPORT_INPUT_AIDL_HAPTICS_FIX_OFF := true
 
-# Change clock position so camera wont close up the clock
+# Screen
+TW_MAX_BRIGHTNESS := 5000
 TW_CUSTOM_CLOCK_POS := "590"
+TW_FRAMERATE := 144
 
-# CPU Temperature
+# CPU Temperature & Battery
 TW_CUSTOM_CPU_TEMP_PATH := /sys/class/thermal/thermal_zone10/temp
-
-# Battery
 TW_CUSTOM_BATTERY_PATH := "/sys/class/power_supply/battery"
 HEALTHD_USE_BATTERY_INFO := true
 
@@ -64,7 +60,8 @@ TARGET_RECOVERY_DEVICE_MODULES += \
     vendor.display.config@1.0 \
     vendor.display.config@2.0 \
     android.hardware.vibrator-service.nothing\
-    libdebuggerd_client
+    libdebuggerd_client \
+    android.hardware.common-V2-ndk
 
 TW_OVERRIDE_SYSTEM_PROPS := \
     "ro.build.product;ro.build.fingerprint=ro.vendor.build.fingerprint;ro.build.version.incremental"
@@ -79,19 +76,19 @@ RECOVERY_LIBRARY_SOURCE_FILES += \
     $(TARGET_OUT_SHARED_LIBRARIES)/libnetutils.so \
     $(TARGET_OUT_SHARED_LIBRARIES)/libdebuggerd_client.so \
     $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@1.0.so \
-    $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@2.0.so
-
-# Custom refresh rate
-TW_FRAMERATE := 144
+    $(TARGET_OUT_SYSTEM_EXT_SHARED_LIBRARIES)/vendor.display.config@2.0.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/libxml2.so \
+    $(TARGET_OUT_SHARED_LIBRARIES)/android.hardware.common-V2-ndk.so
 
 # Include EDL mode
 TW_HAS_EDL_MODE := true
 
 # Encryption
-#TW_INCLUDE_CRYPTO := true
-#TW_INCLUDE_CRYPTO_FBE := true
-#TW_INCLUDE_FBE_METADATA_DECRYPT := true
-#TW_INCLUDE_OMAPI := true
+TW_INCLUDE_CRYPTO := true
+TW_INCLUDE_CRYPTO_FBE := true
+TW_INCLUDE_FBE_METADATA_DECRYPT := true
+TW_INCLUDE_OMAPI := true
+
 
 # Debug
 TARGET_USES_LOGD := true

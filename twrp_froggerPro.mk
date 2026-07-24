@@ -14,6 +14,9 @@ $(call inherit-product, vendor/twrp/config/common.mk)
 
 DEVICE_PATH := device/nothing/froggerPro
 
+# Forgot to inherit device.mk
+$(call inherit-product, $(DEVICE_PATH)/device.mk)
+
 # Include TWRP props
 $(call inherit-product, $(DEVICE_PATH)/twrp_config.mk)
 

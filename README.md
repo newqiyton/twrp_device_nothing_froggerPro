@@ -49,7 +49,7 @@ Medium checks
 - [x] Screen goes off and on
 - [x] F2FS/EXT4 Support, exFAT/NTFS where supported
 - [x] all important partitions listed in mount/backup lists
-- [x] backup/restore to/from external (USB-OTG) storage (not supported by the device)
+- [x] backup/restore to/from external (USB-OTG) storage
 - [ ] backup/restore to/from adb
 - [ ] decrypt /data
 - [ ] Correct date

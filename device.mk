@@ -1,4 +1,4 @@
-
+'
 # Enable updating of APEXes
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
@@ -94,20 +94,6 @@ PRODUCT_SOONG_NAMESPACES += \
 
 
 PRODUCT_APEX_SYSTEM_SERVER_JARS += com.android.crashrecovery:service-crashrecovery
-
-# Add vold into build (Not being compiled)
-PRODUCT_PACKAGES += \
-    vold \
-    vdc
-
-# Add packages for vold
-PRODUCT_PACKAGES += \
-    android.system.keystore2-V5-ndk\
-    android.hardware.boot-V1-ndk \
-    libbinder_ndk \
-    libhidlbase \
-    libkeymint_support \
-    libcryptfs_hw
 
 # Define the local prebuilt directory path
 PREBUILT_LIB_PATH := $(DEVICE_PATH)/prebuilt/lib

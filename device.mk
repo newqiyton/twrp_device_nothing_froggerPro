@@ -120,6 +120,6 @@ PRODUCT_COPY_FILES += \
     $(PREBUILT_LIB_PATH)/libkeymint_support.so:recovery/root/system/lib64/libkeymint_support.so \
     $(PREBUILT_LIB_PATH)/liblogwrap.so:recovery/root/system/lib64/liblogwrap.so \
     $(PREBUILT_LIB_PATH)/libsysutils.so:recovery/root/system/lib64/libsysutils.so \
-    $(PREBUILT_LIB_PATH)/libutils.so:recovery/root/system/lib64/libutils.so
+    $(PREBUILT_LIB_PATH)/libutils.so:recovery/root/system/lib64/libutils.so \
     $(PREBUILT_LIB_PATH)/android.hardware.security.keymint-V4-ndk.so:recovery/root/system/lib64/android.hardware.security.keymint-V4-ndk.so
 

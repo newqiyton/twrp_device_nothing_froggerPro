@@ -6,7 +6,7 @@ Recovery tree for the Nothing Phone (4a) Pro, codenamed `froggerPro`.
 
 ## Information
 
-Device                  | Nothing Phone (4a)
+Device                  | Nothing Phone (4a) Pro
 :-----------------------|:-------------------------------------------
 SoC                     | Qualcomm Snapdragon® 7 Gen 4 (SM7750-AB)
 Board                   | sun
@@ -49,8 +49,8 @@ Medium checks
 - [x] Screen goes off and on
 - [x] F2FS/EXT4 Support, exFAT/NTFS where supported
 - [x] all important partitions listed in mount/backup lists
-- [ ] backup/restore to/from external (USB-OTG) storage (not supported by the device)
-- [ ] backup/restore to/from adb (https://gerrit.omnirom.org/#/c/15943/)
+- [x] backup/restore to/from external (USB-OTG) storage (not supported by the device)
+- [ ] backup/restore to/from adb
 - [ ] decrypt /data
 - [ ] Correct date
 

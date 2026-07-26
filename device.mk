@@ -3,7 +3,7 @@
 $(call inherit-product, $(SRC_TARGET_DIR)/product/updatable_apex.mk)
 
 # A/B
-$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression_with_xor.mk)
+#$(call inherit-product, $(SRC_TARGET_DIR)/product/virtual_ab_ota/compression_with_xor.mk)
 
 # GSI
 $(call inherit-product, $(SRC_TARGET_DIR)/product/developer_gsi_keys.mk)
@@ -94,4 +94,46 @@ PRODUCT_SOONG_NAMESPACES += \
 
 
 PRODUCT_APEX_SYSTEM_SERVER_JARS += com.android.crashrecovery:service-crashrecovery
+
+# Add vold into build (Not being compiled)
+PRODUCT_PACKAGES += \
+    vold \
+    vdc
+
+# Add packages for vold
+PRODUCT_PACKAGES += \
+    android.system.keystore2-V5-ndk\
+    android.hardware.boot-V1-ndk \
+    libbinder_ndk \
+    libhidlbase \
+    libkeymint_support \
+    libcryptfs_hw
+
+# Define the local prebuilt directory path
+PREBUILT_LIB_PATH := $(DEVICE_PATH)/prebuilt/lib
+
+# Copy vold dependencies
+PRODUCT_COPY_FILES += \
+    $(PREBUILT_LIB_PATH)/android.hardware.boot@1.1.so:recovery/root/system/lib64/android.hardware.boot@1.1.so \
+    $(PREBUILT_LIB_PATH)/android.hardware.boot-V1-ndk.so:recovery/root/system/lib64/android.hardware.boot-V1-ndk.so \
+    $(PREBUILT_LIB_PATH)/android.system.keystore2-V5-ndk.so:recovery/root/system/lib64/android.system.keystore2-V5-ndk.so \
+    $(PREBUILT_LIB_PATH)/libbase.so:recovery/root/system/lib64/android.system.keystore2-V5-ndk.so \
+    $(PREBUILT_LIB_PATH)/libbinder.so:recovery/root/system/lib64/libbinder.so \
+    $(PREBUILT_LIB_PATH)/libbinder_ndk.so:recovery/root/system/lib64/libbinder_ndk.so \
+    $(PREBUILT_LIB_PATH)/libboot_control_client.so:recovery/root/system/lib64/libboot_control_client.so \
+    $(PREBUILT_LIB_PATH)/libcryptfs_hw.so:recovery/root/system/lib64/libcryptfs_hw.so \
+    $(PREBUILT_LIB_PATH)/libcrypto.so:recovery/root/system/lib64/libcrypto.so \
+    $(PREBUILT_LIB_PATH)/libcrypto_utils.so:recovery/root/system/lib64/libcrypto_utils.so \
+    $(PREBUILT_LIB_PATH)/libcutils.so:recovery/root/system/lib64/libcutils.so \
+    $(PREBUILT_LIB_PATH)/libext4_utils.so:recovery/root/system/lib64/libext4_utils.so \
+    $(PREBUILT_LIB_PATH)/libgsi.so:recovery/root/system/lib64/libgsi.so \
+    $(PREBUILT_LIB_PATH)/libhardware.so:recovery/root/system/lib64/libhardware.so \
+    $(PREBUILT_LIB_PATH)/libhardware_legacy.so:recovery/root/system/lib64/libhardware_legacy.so \
+    $(PREBUILT_LIB_PATH)/libhidlbase.so:recovery/root/system/lib64/libhidlbase.so \
+    $(PREBUILT_LIB_PATH)/libincfs.so:recovery/root/system/lib64/libincfs.so \
+    $(PREBUILT_LIB_PATH)/libkeymint_support.so:recovery/root/system/lib64/libkeymint_support.so \
+    $(PREBUILT_LIB_PATH)/liblogwrap.so:recovery/root/system/lib64/liblogwrap.so \
+    $(PREBUILT_LIB_PATH)/libsysutils.so:recovery/root/system/lib64/libsysutils.so \
+    $(PREBUILT_LIB_PATH)/libutils.so:recovery/root/system/lib64/libutils.so
+    $(PREBUILT_LIB_PATH)/android.hardware.security.keymint-V4-ndk.so:recovery/root/system/lib64/android.hardware.security.keymint-V4-ndk.so
 

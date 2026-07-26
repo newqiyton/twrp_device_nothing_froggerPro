@@ -1,0 +1,80 @@
+on early-init
+    setprop keystore.boot_level 0
+
+on early-init
+    export LD_LIBRARY_PATH /system/lib64:/vendor/lib64:/apex/com.android.runtime/lib64:/apex/com.android.os.statsd/lib64:/sbin
+
+service vendor.qseecomd /vendor/bin/qseecomd
+    socket notify-topology stream 660 system drmrpc
+    class core
+    user root
+    group root drmrpc system
+    seclabel u:r:recovery:s0
+    setenv LD_LIBRARY_PATH /persist/decrypt_libs:/vendor/lib64:/vendor/lib64/hw
+    disabled
+
+service vendor.keymint-qti /vendor/bin/hw/android.hardware.security.keymint-service-qti
+    class animation
+    user system
+    group system
+    seclabel u:r:hal_keymint_default:s0
+
+service keystore2 /system/bin/keystore2 /data/misc/keystore
+    class animation
+    user keystore
+    group keystore readproc log
+    seclabel u:r:keystore:s0
+
+service vold /system/bin/vold
+    class core
+    ioprio rt 4
+    writepid /dev/cpuset/foreground/tasks
+    seclabel u:r:vold:s0
+
+on property:ro.crypto.state=encrypted && property:ro.crypto.type=file
+    chmod 0644 /dev/dma_heap/qcom,qseecom
+    chown system system /dev/dma_heap/qcom,qseecom
+    chmod 0644 /dev/dma_heap/qcom,qseecom-ta
+    chown system system /dev/dma_heap/qcom,qseecom-ta
+    setprop keystore.boot_level 0
+    wait /dev/block/mapper/vendor${ro.boot.slot_suffix} 5
+    mount erofs /dev/block/mapper/vendor${ro.boot.slot_suffix} /vendor ro
+    wait /dev/block/mapper/odm${ro.boot.slot_suffix} 5
+    mount erofs /dev/block/mapper/odm${ro.boot.slot_suffix} /odm ro
+    mkdir /tmp/misc 0700 root root
+    mkdir /tmp/misc/keystore 0700 root root
+    start vendor.qseecomd
+
+on property:vendor.sys.listeners.registered=true
+    start vendor.keymint-qti
+    start keystore2
+
+# Encryption again
+service prepdecrypt /system/bin/prepdecrypt.sh
+    user root
+    group root
+    disabled
+    oneshot
+    seclabel u:r:recovery:s0
+
+# Change the trigger from "on property:crypto.ready=1" to waiting for vendor
+on property:vendor.all.modules.ready=1
+    start prepdecrypt
+
+on early-init
+    # Create a dummy blank file so it satisfies the read check instantly
+    write /etc/additional.fstab ""
+    chmod 0644 /etc/additional.fstab
+
+on post-fs
+    # Force delete it if a script or binary recreates it
+    rm /etc/additional.fstab
+    symlink /dev/null /etc/additional.fstab
+
+on post-fs
+    start vold
+
+on post-fs
+    start vendor.keymint-qti
+
+

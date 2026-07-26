@@ -23,13 +23,14 @@ TW_INCLUDE_RESETPROP    := true
 TW_EXTRA_LANGUAGES      := true
 TW_EXCLUDE_APEX         := true
 TW_INCLUDE_FASTBOOTD    := true
-
+TW_EXCLUDE_TWRPAPP := true
+TW_NO_SCREEN_BLANK := true
 TW_LOAD_VENDOR_MODULES := "adsp_loader_dlkm.ko rproc_qcom_common.ko q6_dlkm.ko qcom_q6v5.ko qcom_q6v5_pas.ko qcom_sysmon.ko haptic.ko hapticdrv.ko"
 TW_LOAD_VENDOR_MODULES_EXCLUDE_GKI := true
 
-TW_SUPPORT_INPUT_AIDL_HAPTICS := true
-TW_SUPPORT_INPUT_AIDL_HAPTICS_FQNAME := "IVibrator/default"
-TW_SUPPORT_INPUT_AIDL_HAPTICS_FIX_OFF := true
+#TW_SUPPORT_INPUT_AIDL_HAPTICS := true
+#TW_SUPPORT_INPUT_AIDL_HAPTICS_FQNAME := "IVibrator/default"
+#TW_SUPPORT_INPUT_AIDL_HAPTICS_FIX_OFF := true
 
 # Screen
 TW_MAX_BRIGHTNESS := 5000
@@ -88,7 +89,7 @@ TW_INCLUDE_CRYPTO := true
 TW_INCLUDE_CRYPTO_FBE := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
 TW_INCLUDE_OMAPI := true
-
+TW_USE_FSCRYPT_POLICY := 2
 
 # Debug
 TARGET_USES_LOGD := true

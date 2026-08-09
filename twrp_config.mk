@@ -32,7 +32,7 @@ TW_LOAD_VENDOR_MODULES := "adsp_loader_dlkm.ko rproc_qcom_common.ko q6_dlkm.ko q
 TW_LOAD_VENDOR_MODULES_EXCLUDE_GKI := true
 
 # CPU Temperature
-TW_CUSTOM_CPU_TEMP_PATH := /sys/class/thermal/thermal_zone16/temp
+TW_CUSTOM_CPU_TEMP_PATH := /sys/class/thermal/thermal_zone17/temp
 
 # USB
 TW_EXCLUDE_DEFAULT_USB_INIT := true

@@ -50,9 +50,10 @@ Manifest        | https://github.com/nebrassy/platform_manifest_twrp_aosp.git
     - [x] MTP
     - [x] Filesystem/Mounts
     - [x] Slot switch
-    - [ ] Haptics
+    - [x] Haptics
 - [x] Settings persistence
 - [x] Data decryption
     - [x] Without a password
     - [x] With a password
 
+Thanks to dx4m for providing battery and otg support

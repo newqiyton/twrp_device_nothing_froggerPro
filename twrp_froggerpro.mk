@@ -12,7 +12,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/full_base_telephony.mk)
 # Inherit some common TWRP stuff.
 $(call inherit-product, vendor/twrp/config/common.mk)
 
-DEVICE_PATH := device/nothing/froggerPro
+DEVICE_PATH := device/nothing/froggerpro
 
 # Inherit from Asteroids device
 $(call inherit-product, $(DEVICE_PATH)/device.mk)
@@ -20,9 +20,8 @@ $(call inherit-product, $(DEVICE_PATH)/device.mk)
 # Include TWRP configurations
 $(call inherit-product, $(DEVICE_PATH)/twrp_config.mk)
 
-
-PRODUCT_DEVICE := froggerPro
-PRODUCT_NAME := twrp_froggerPro
+PRODUCT_DEVICE := froggerpro
+PRODUCT_NAME := twrp_froggerpro
 PRODUCT_BRAND := Nothing
 PRODUCT_MODEL := A069P
 PRODUCT_MANUFACTURER := nothing

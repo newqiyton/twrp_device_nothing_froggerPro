@@ -4,7 +4,7 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
-DEVICE_PATH := device/nothing/froggerPro
+DEVICE_PATH := device/nothing/froggerpro
 
 # For building with minimal manifest
 ALLOW_MISSING_DEPENDENCIES := true
